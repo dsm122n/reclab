@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Reclab</title>
+</head>
+<body>
+    <div class="flex">
+        <h1>Reclab</h1>
+
+        <div class="container">
+            <form id="reclabForm">
+                <label for="nombre">Nombre y Apellidos</label>
+                <input type="text" name="nombre" id="nombre" required>
+
+                <label for="rut">RUT</label>
+                <input type="text" name="rut" id="rut" required>
+
+                <label for="edad">Edad</label>
+                <input type="number" name="edad" id="edad" required>
+
+                <label for="sexo">Sexo</label>
+                <select name="sexo" id="sexo" required>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+
+                <label for="examen">Exámenes</label>
+                <div class="examenes">
+                    <div class="examen">
+                        <select name="examen" class="examen-select">
+                            <option value="Perfil hematológico">Perfil hematológico</option>
+                            <option value="Hemograma">Hemograma</option>
+                            <option value="Recuento de Plaquetas">Recuento de Plaquetas</option>
+                            <option value="Recuento de leucocitos">Recuento de leucocitos</option>
+                            <option value="Gases venosos">Gases venosos</option>
+                            <option value="Gases arteriales">Gases arteriales</option>
+                            <option value="Electrolitos plasmáticos">Electrolitos plasmáticos</option>
+                            <option value="Calcio total">Calcio Total</option>
+                            <option value="Calcio iónico">Calcio iónico</option>
+                            <option value="Fosforo">Fosforo</option>
+                            <option value="Magnesio">Magnesio</option>
+                            <option value="Creatinina">Creatinina</option>
+                            <option value="Nitrógeno uréico">Nitrógeno uréico</option>
+                            <option value="LDH">LDH</option>
+                            <option value="PROTEINA C REACTIVA">PROTEINA C REACTIVA</option>
+                            <option value="TIEMPO DE TROMBOPLASTINA">TIEMPO DE TROMBOPLASTINA</option>
+                            <option value="TIEMPO DE PROTROMBINA %">TIEMPO DE PROTROMBINA %</option>
+                            <option value="INR">INR</option>
+                            <option value="Perfil bioquímico">Perfil bioquímico</option>
+                            <option value="Perfil hepático">Perfil hepático</option>
+                            <option value="Bilirrubina total">Bilirrubina total</option>
+                            <option value="Bilirrubina directa">Bilirrubina directa</option>
+                            <option value="Proteínas totales">Proteínas totales</option>
+                            <option value="Albumina">Albumina</option>
+                            <option value="GGT">GGT</option>
+                            <option value="Fosfatasa alcalina">Fosfatasa alcalina</option>
+                            <option value="GPT/ALT">GPT/ALT</option>
+                            <option value="GOT/AST">GOT/AST</option>
+                            <!-- Add other options here -->
+                        </select>
+                        <input type="text" name="examen_otro" class="examen-otro" placeholder="Otro examen">
+                        <button type="button" class="add">+</button>
+                        <button type="button" class="remove">-</button>
+                    </div>
+                </div>
+
+                <select name="listado" id="listado_ex" size="10" style="width: 100%;">
+                    <!-- List will populate dynamically -->
+                </select>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
