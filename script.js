@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </head>
             <body>
                 <div class="header">
-                    <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre} ${datosPaciente.apellidos}</p>
+                    <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre}</p>
                     <p><strong>Edad:</strong> ${datosPaciente.edad} años</p>
                     <p><strong>Sexo:</strong> ${datosPaciente.sexo}</p>
                 </div>
