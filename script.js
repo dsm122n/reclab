@@ -73,6 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function printPDF() {
     const printWindow = window.open("", "_blank");
+    datosPaciente.nombre = document.getElementById("nombre").value;
+    datosPaciente.rut = document.getElementById("rut").value;
+    datosPaciente.edad = document.getElementById("edad").value;
+    datosPaciente.sexo = document.getElementById("sexo").value;
 
     // Dynamic HTML content with patient and prescriptor data
     const htmlContent = `
@@ -139,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <h1>Solicitud de Exámenes</h1>
         <div class="page">
         <div class="header">
-                    <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre} ${datosPaciente.apellidos}</p>
+                    <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre}</p>
                     <p><strong>Edad:</strong> ${datosPaciente.edad} años</p>
                     <p><strong>Sexo:</strong> ${datosPaciente.sexo}</p>
                 </div>
