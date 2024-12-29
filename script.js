@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     var datosPrescriptor = {
         nombre: "Nombre del prescriptor para membrete",
-        apellidos: "Apellidos",
         cedula: "xx.xxx.xxx-x",
         telefono: "99999999",
         direccion: "xxxxxxxxxxxxxxxx"
@@ -73,44 +72,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function printPDF() {
-        datosPaciente.nombre = document.getElementById("nombre").value;
-        datosPaciente.rut = document.getElementById("rut").value;
-        datosPaciente.edad = document.getElementById("edad").value;
-        datosPaciente.sexo = document.getElementById("sexo").value;
-        const printWindow = window.open("", "_blank");
-    
-        // Dynamic HTML content with patient and prescriptor data
-        const htmlContent = `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Prescripción de Exámenes</title>
-                <style>
+    const printWindow = window.open("", "_blank");
+
+    // Dynamic HTML content with patient and prescriptor data
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Prescripción de Exámenes</title>
+            <style>
+             h1 {
+                text-align: center;
+                color: #4CAF50;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+                @media print {
                     body {
                         font-family: Arial, sans-serif;
-                        margin: 20px;
+                        margin: 0;
+                        padding: 0;
                         color: #333;
-                        background-color: #fff;
                     }
-                    h1 {
-                        text-align: center;
-                        color: #4CAF50;
-                        font-size: 24px;
-                        margin-bottom: 20px;
-                    }
+                    .page {
+                        page-break-after: always;
+                        margin: 20mm;
+                                            }
                     .header, .footer {
-                        font-size: 16px;
-                        margin-bottom: 20px;
+                        position: sticky;
+                        width: calc(100% - 40mm);
+                        left: 20mm;
                     }
-                    .header p, .footer p {
-                        margin: 5px 0;
+                    .header {
+                        top: 0;
+                        background-color: white;
+                        z-index: 1;
+                    }
+                    .footer {
+                        bottom: 0;
+                        text-align: center;
+                        font-size: 14px;
+                        color: #888;
+                        background-color: white;
+                        z-index: 1;
                     }
                     ul {
-                        list-style-type: none;
-                        padding: 0;
                         margin: 0;
+                        padding: 0;
+                        list-style-type: none;
                     }
                     li {
                         font-size: 18px;
@@ -120,40 +132,38 @@ document.addEventListener("DOMContentLoaded", () => {
                         border-radius: 5px;
                         background-color: #f9f9f9;
                     }
-                    .footer {
-                        margin-top: 30px;
-                        text-align: center;
-                        font-size: 14px;
-                        color: #888;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="header">
-                    <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre}</p>
+                }
+            </style>
+        </head>
+        <body>
+        <h1>Solicitud de Exámenes</h1>
+        <div class="page">
+        <div class="header">
+                    <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre} ${datosPaciente.apellidos}</p>
                     <p><strong>Edad:</strong> ${datosPaciente.edad} años</p>
                     <p><strong>Sexo:</strong> ${datosPaciente.sexo}</p>
                 </div>
-                <h1>Reclab - Prescripción de Exámenes</h1>
                 <ul>
                     ${solicitud.map((exam) => `<li>${exam}</li>`).join("")}
                 </ul>
                 <div class="footer">
-                    <p><strong>Nombre del Prescriptor:</strong> ${datosPrescriptor.nombre} ${datosPrescriptor.apellidos}</p>
+                    <p><strong>Nombre del Prescriptor:</strong> ${datosPrescriptor.nombre}</p>
                     <p><strong>Cédula:</strong> ${datosPrescriptor.cedula}</p>
                     <p><strong>Teléfono:</strong> ${datosPrescriptor.telefono}</p>
                     <p><strong>Dirección:</strong> ${datosPrescriptor.direccion}</p>
                 </div>
-            </body>
-            </html>
-        `;
-    
-        // Write the HTML content to the new window and print
-        printWindow.document.open();
-        printWindow.document.write(htmlContent);
-        printWindow.document.close();
-        printWindow.print();
-    }
+            </div>
+        </body>
+        </html>
+    `;
+
+    // Write the HTML content to the new window and print
+    printWindow.document.open();
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+    printWindow.print();
+}
+
     
     
 });
