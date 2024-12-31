@@ -22,15 +22,17 @@
                 <input type="number" name="edad" id="edad" required>
 
                 <label for="sexo">Sexo</label>
-                <select name="sexo" id="sexo" required>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
+                <select name="sexo" id="sexo" required style="width: 100%;">
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
                 </select>
 
                 <label for="examen">Exámenes</label>
                 <div class="examenes">
                     <div class="examen">
-                        <select name="examen" class="examen-select">
+                        <select name="examen" class="examen-select" id="input_examen">
+                            <option value="" disabled selected>Seleccione + Enter dos veces</option>
                             <option value="Perfil hematológico">Perfil hematológico</option>
                             <option value="Hemograma">Hemograma</option>
                             <option value="Recuento de Plaquetas">Recuento de Plaquetas</option>
@@ -59,20 +61,23 @@
                             <option value="Fosfatasa alcalina">Fosfatasa alcalina</option>
                             <option value="GPT/ALT">GPT/ALT</option>
                             <option value="GOT/AST">GOT/AST</option>
-                            <!-- Add other options here -->
                         </select>
-                        <input type="text" name="examen_otro" class="examen-otro" placeholder="Otro examen">
+                        <input type="text" name="examen_otro" class="examen-otro" placeholder="Ingresa texto y presiona Enter">
                         <button type="button" class="add">+</button>
                         <button type="button" class="remove">-</button>
                     </div>
                 </div>
 
-                <select name="listado" id="listado_ex" size="10" style="width: 100%;">
+                <select name="listado" id="listado_ex" size="10" style="width: 100%; height: 10em;">
                     <!-- List will populate dynamically -->
                 </select>
-
-                <button type="submit">Enviar</button>
+                
+                
+                <button onclick="printPDF()" type="button">Imprimir 🖨️</button>
             </form>
+            <p>Mientras está posicionado en las celdas de selección de exámenes </p>
+                <li> Añada a la lista con el botón + o con <b>Enter</b> </li>
+                <li> Elimine de la lista el último elemento con el botón - o con <b>ctrl + Del</b></li>
         </div>
     </div>
 
