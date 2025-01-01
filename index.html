@@ -17,9 +17,13 @@
 
                 <label for="rut">RUT</label>
                 <input type="text" name="rut" id="rut" required>
+                
+                <label for="fecha">Fecha Nacimiento</label>
+                <input type="date" name="fecha" id="fecha_nacimiento" required>
+
 
                 <label for="edad">Edad</label>
-                <input type="number" name="edad" id="edad" required>
+                <input type="number" name="edad" id="edad" >
 
                 <label for="sexo">Sexo</label>
                 <select name="sexo" id="sexo" required style="width: 100%;">
@@ -28,11 +32,14 @@
                     <option value="Femenino">Femenino</option>
                 </select>
 
+                <label for="hipotesis_diagnostica">Hipótesis Diagnóstica</label>
+                <input type="text" name="hipotesis_diagnostica" id="hipotesis_diagnostica" required>
+
                 <label for="examen">Exámenes</label>
                 <div class="examenes">
                     <div class="examen">
                         <select name="examen" class="examen-select" id="input_examen">
-                            <option value="" disabled selected>Seleccione + Enter dos veces</option>
+                            <option value="" disabled selected>Seleccione exámenes del listado</option>
                             <option value="Perfil hematológico">Perfil hematológico</option>
                             <option value="Hemograma">Hemograma</option>
                             <option value="Recuento de Plaquetas">Recuento de Plaquetas</option>
@@ -62,7 +69,7 @@
                             <option value="GPT/ALT">GPT/ALT</option>
                             <option value="GOT/AST">GOT/AST</option>
                         </select>
-                        <input type="text" name="examen_otro" class="examen-otro" placeholder="Ingresa texto y presiona Enter">
+                        <input type="text" name="examen_otro" class="examen-otro" placeholder="Ingresa texto">
                         <button type="button" class="add">+</button>
                         <button type="button" class="remove">-</button>
                     </div>
@@ -81,6 +88,9 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+
+        
+    </script>
 </body>
 </html>

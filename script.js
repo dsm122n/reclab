@@ -4,15 +4,19 @@ const listado = document.getElementById("listado_ex");
 var datosPaciente = {
     nombre: "",
     rut: "",
+    fecha_nacimiento: "",
     edad: "",
-    sexo: ""
+    sexo: "",
+    hipotesis_diagnóstica: ""
 
 }
 var datosPrescriptor = {
-    nombre: "Nombre del prescriptor para membrete",
-    cedula: "xx.xxx.xxx-x",
-    telefono: "99999999",
-    direccion: "xxxxxxxxxxxxxxxx"
+    nombre: "nombre",
+    profesion: "prof",
+    cedula: "xx.xxx.xxx-1",
+    numero_registro: "nnnnn",
+    mail:"awa@gmail.com",
+    direccion: "dir"
 }
 const solicitud = [];
 document.addEventListener("DOMContentLoaded", () => {
@@ -58,6 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
         } 
     });
 
+    // fecha de nacimiento
+    document.getElementById("fecha_nacimiento").addEventListener("change", (event) => {
+        const age = calculateAge(event.target.value);
+        document.getElementById("edad").value = age;
+    }
+    );
+
 
     function addExamToList(examElement) {
         const selectValue = examElement.querySelector(".examen-select").value;
@@ -93,13 +104,23 @@ document.addEventListener("DOMContentLoaded", () => {
     
 });
 
+// calculate age from date of birth
+function calculateAge(dateOfBirth) {
+    const dob = new Date(dateOfBirth);
+    const now = new Date();
+    const diff = now - dob;
+    const ageDate = new Date(diff);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
 
 function printPDF() {
     console.log("Printing PDF...");
 const printWindow = window.open("", "_blank");
 datosPaciente.nombre = document.getElementById("nombre").value;
 datosPaciente.rut = document.getElementById("rut").value;
+datosPaciente.fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
 datosPaciente.edad = document.getElementById("edad").value;
+datosPaciente.hipotesis_diagnóstica = document.getElementById("hipotesis_diagnostica").value;
 datosPaciente.sexo = document.getElementById("sexo").value;
 
 // Dynamic HTML content with patient and prescriptor data
@@ -114,22 +135,30 @@ const htmlContent = `
         <link rel="stylesheet" href="style.css" type="text/css" media="screen">
     </head>
     <body>
-    <h1>Solicitud de Exámenes</h1>
     <div class="page">
     <div class="header">
-                <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre}</p>
-                <p><strong>Edad:</strong> ${datosPaciente.edad} años</p>
-                <p><strong>Sexo:</strong> ${datosPaciente.sexo}</p>
-            </div>
-            <ul>
-                ${solicitud.map((exam) => `<li>${exam}</li>`).join("")}
-            </ul>
-            <div class="footer">
-                <p><strong>Nombre del Prescriptor:</strong> ${datosPrescriptor.nombre}</p>
-                <p><strong>Cédula:</strong> ${datosPrescriptor.cedula}</p>
-                <p><strong>Teléfono:</strong> ${datosPrescriptor.telefono}</p>
-                <p><strong>Dirección:</strong> ${datosPrescriptor.direccion}</p>
-            </div>
+
+                    <h1>Solicitud de Exámenes</h1>
+                        <div class="px-data">
+                            <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre}</p>
+                            <p><strong>RUT:</strong> ${datosPaciente.rut} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>Sexo:</strong> ${datosPaciente.sexo}</p> 
+                            <p><strong>Fecha de Nacimiento:</strong> ${datosPaciente.fecha_nacimiento} &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp <strong>Edad:</strong> ${datosPaciente.edad} años</p>
+                            <p><strong>Hipótesis Diagnóstica:</strong> ${datosPaciente.hipotesis_diagnóstica}</p>
+                        </div>
+                    </div>
+        <div class="content">
+            Exámenes solicitados:<br>
+                <ul>
+                    ${solicitud.map((exam) => `<li>${exam}</li>`).join("")}
+                </ul>
+        </div>
+        <div class="footer center">
+            <p> Dr. ${datosPrescriptor.nombre} - ${datosPrescriptor.profesion}</p>
+            <p><strong>Cédula:</strong> ${datosPrescriptor.cedula}   -   <strong>N° Registro:</strong> ${datosPrescriptor.numero_registro}</p>
+            <p><strong>Contacto:</strong> ${datosPrescriptor.mail}</p>
+            <p><strong>Dirección:</strong> ${datosPrescriptor.direccion}</p>
+            <p>Página <span class="pageNumber"></span></p>
+        </div>
         </div>
     </body>
     </html>
