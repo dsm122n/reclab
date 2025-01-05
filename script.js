@@ -7,18 +7,22 @@ var datosPaciente = {
     fecha_nacimiento: "",
     edad: "",
     sexo: "",
-    hipotesis_diagnóstica: ""
+    hipotesis_diagnóstica: "",
+    fecha_solicitud: ""
 
 }
 var datosPrescriptor = {
-    nombre: "nombre",
-    profesion: "prof",
-    cedula: "xx.xxx.xxx-1",
-    numero_registro: "nnnnn",
-    mail:"awa@gmail.com",
-    direccion: "dir"
+    nombre: "Daniel Arturo San Martín Martínez",
+    profesion: "Médico Cirujano",
+    cedula: "20.283.646-1",
+    numero_registro: "861577",
+    mail:"dasanmartinm@gmail.com - +569 6831 2852",
+    direccion: "Comandante Las Heras 2180, San Bernardo, Región Metropolitana"
 }
 const solicitud = [];
+
+document.addEventListener("DOMContentLoaded", () => {});
+
 document.addEventListener("DOMContentLoaded", () => {
 
 
@@ -97,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             listado.appendChild(listItem);
         });
     }
+    document.getElementById("fecha_solicitud").valueAsDate = new Date();
 
     
 
@@ -122,6 +127,7 @@ datosPaciente.fecha_nacimiento = document.getElementById("fecha_nacimiento").val
 datosPaciente.edad = document.getElementById("edad").value;
 datosPaciente.hipotesis_diagnóstica = document.getElementById("hipotesis_diagnostica").value;
 datosPaciente.sexo = document.getElementById("sexo").value;
+datosPaciente.fecha_solicitud = document.getElementById("fecha_solicitud").value;
 
 // Dynamic HTML content with patient and prescriptor data
 const htmlContent = `
@@ -143,7 +149,7 @@ const htmlContent = `
                             <p><strong>Nombre del Paciente:</strong> ${datosPaciente.nombre}</p>
                             <p><strong>RUT:</strong> ${datosPaciente.rut} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>Sexo:</strong> ${datosPaciente.sexo}</p> 
                             <p><strong>Fecha de Nacimiento:</strong> ${datosPaciente.fecha_nacimiento} &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp <strong>Edad:</strong> ${datosPaciente.edad} años</p>
-                            <p><strong>Hipótesis Diagnóstica:</strong> ${datosPaciente.hipotesis_diagnóstica}</p>
+                            <p><strong>Hipótesis Diagnóstica:</strong> ${datosPaciente.hipotesis_diagnóstica}&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  <strong>Fecha de Solicitud:</strong> ${datosPaciente.fecha_solicitud}</p>
                         </div>
                     </div>
         <div class="content">
