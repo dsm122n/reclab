@@ -130,9 +130,8 @@ datosPaciente.sexo = document.getElementById("sexo").value;
 datosPaciente.fecha_solicitud = document.getElementById("fecha_solicitud").value;
 
 // Dynamic HTML content with patient and prescriptor data
-const htmlContent = `
-    <!DOCTYPE html>
-    <html lang="en">
+const htmlContent = `<!DOCTYPE html>
+    <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -163,7 +162,6 @@ const htmlContent = `
             <p><strong>Cédula:</strong> ${datosPrescriptor.cedula}   -   <strong>N° Registro:</strong> ${datosPrescriptor.numero_registro}</p>
             <p><strong>Contacto:</strong> ${datosPrescriptor.mail}</p>
             <p><strong>Dirección:</strong> ${datosPrescriptor.direccion}</p>
-            <p>Página <span class="pageNumber"></span></p>
         </div>
         </div>
     </body>
@@ -174,5 +172,6 @@ const htmlContent = `
 printWindow.document.open();
 printWindow.document.write(htmlContent);
 printWindow.document.close();
-printWindow.print();
+
+
 }
