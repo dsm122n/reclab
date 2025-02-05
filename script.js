@@ -136,8 +136,83 @@ const htmlContent = `<!DOCTYPE html>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Prescripción de Exámenes</title>
-        <link rel="stylesheet" href="print.css" type="text/css" media="print"> 
-        <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+        <style type="text/css" media="print">
+    @media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        counter-reset: page;
+    }
+
+
+    .page {
+        page-break-after: always;
+        padding: 40mm 20mm; /* Ajusta los márgenes */
+        position: relative;
+    }
+    h1{
+        text-align: center;
+    }
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        background: #ffffff00;
+        padding: 10px 0;
+        font-size: 10pt;
+        
+        
+    }
+    .px-data{
+        border: 1px solid #9c9c9c;
+        padding: 10px;
+        margin: 10px;
+        box-shadow: 4px 4px 6px #7f7f7f77;
+    }
+    .footer {
+        position: fixed;
+        bottom: 0;
+        font-size: 8pt;
+        color: #939191;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background: #ffffff00;
+        padding: 10px 0;
+    }
+    .footer .pageNumber::after {
+        content: counter(page) " de " counter(pages);
+    }
+
+    .content {
+        margin-top: 30mm; /* Espacio debajo del encabezado */
+        margin-bottom: 30mm; /* Espacio encima del pie de página */
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        font-size: 10pt;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    li:nth-child(even) {
+        page-break-inside: avoid; /* Evita partir un elemento dentro de una página */
+    }
+}
+
+</style>
     </head>
     <body>
     <div class="page">
@@ -172,6 +247,7 @@ const htmlContent = `<!DOCTYPE html>
 printWindow.document.open();
 printWindow.document.write(htmlContent);
 printWindow.document.close();
+printWindow.print();
 
 
 }
